@@ -7,5 +7,3 @@ export const authUserReducer = (state = null, action) => {
     return state;
   }
 };
-
-//export default authUserReducer;
