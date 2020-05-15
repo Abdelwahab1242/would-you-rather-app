@@ -1,16 +1,22 @@
 import React from "react";
 import { Menu, Button, Header, Image } from "semantic-ui-react";
+import { setAuthUser } from "../actions/authUser";
+import { connect } from "react-redux";
 
-const src =
-  "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80";
-
-export class NavBar extends React.Component {
+class NavBar extends React.Component {
   state = { activeItem: "home" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
+  onLogout = (e) => {
+    e.preventDefault();
+    this.props.setAuthUser(null);
+  };
+
   render() {
     const { activeItem } = this.state;
+    const { authUser, users } = this.props;
+    console.log("koheeeeeen", this.props);
     return (
       <div>
         <Menu pointing secondary className="nav-bar">
@@ -32,15 +38,26 @@ export class NavBar extends React.Component {
 
           <Menu.Menu position="right">
             <Header as="h5">
-              <Image circular src={src} />
-              Welcome Back, Patrick
+              <Image circular src={users[authUser].avatarURL} />
+              Welcome Back, {users[authUser].name}
             </Header>
           </Menu.Menu>
           <Menu.Menu position="right">
-            <Button secondary>Logout</Button>
+            <Button secondary onClick={this.onLogout}>
+              Logout
+            </Button>
           </Menu.Menu>
         </Menu>
       </div>
     );
   }
 }
+
+const mapStateToProps = (usersReducer) => {
+  return {
+    authUser: usersReducer.authUserReducer,
+    users: usersReducer.questionsReducer,
+  };
+};
+
+export default connect(mapStateToProps, { setAuthUser })(NavBar);
