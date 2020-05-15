@@ -20,5 +20,3 @@ export const saveQuestion = (question) => {
 export const saveQuestionAnswer = (authUser, qid, answer) => {
   return _saveQuestionAnswer({ authUser, qid, answer });
 };
-
-//export default { getInitialData, saveQuestion, saveQuestionAnswer };
