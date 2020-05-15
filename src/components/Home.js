@@ -1,5 +1,4 @@
 import React from "react";
-import { NavBar } from "./NavBar";
 import { Tab } from "semantic-ui-react";
 import { UserCard } from "./UserCard";
 
@@ -12,7 +11,6 @@ export class Home extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div style={{ margin: "5rem" }}>
           <Tab panes={panes} renderActiveOnly={false} />
           <UserCard />
