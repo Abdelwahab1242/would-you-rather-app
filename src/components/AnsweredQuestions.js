@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 class AnsweredQuestions extends React.Component {
   render() {
     const { authUser, optionOne, optionTwo } = this.props;
+    //console.log("ansaaars",this.props);
     return (
       <div>
         <Header as="h2">Results:</Header>
