@@ -2,8 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
-import { Home } from "./Home";
+import Home from "./Home";
 import NavBar from "./NavBar";
+import NewQuestion from "./NewQuestion";
+import LeaderboardTable from "./LeaderboardTable";
 
 class App extends React.Component {
   componentDidMount() {
@@ -26,9 +28,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ authUserReducer }) => {
+const mapStateToProps = ({ authUser }) => {
   return {
-    authUser: authUserReducer,
+    authUser,
   };
 };
 

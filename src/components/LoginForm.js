@@ -51,9 +51,9 @@ class LoginForm extends React.Component {
   }
 }
 
-const mapStateToProps = ({ questionsReducer }) => {
+const mapStateToProps = ({ users }) => {
   return {
-    users: Object.values(questionsReducer),
+    users: Object.values(users),
   };
 };
 

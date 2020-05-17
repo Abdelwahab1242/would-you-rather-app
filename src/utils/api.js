@@ -6,7 +6,7 @@ import {
 } from "./_DATA";
 
 export const getInitialData = async () => {
-  const [users, questions] = await Promise.all([_getQuestions(), _getUsers()]);
+  const [users, questions] = await Promise.all([_getUsers(), _getQuestions()]);
   return {
     users,
     questions,

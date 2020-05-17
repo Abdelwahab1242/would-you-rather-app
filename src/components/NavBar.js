@@ -16,7 +16,7 @@ class NavBar extends React.Component {
   render() {
     const { activeItem } = this.state;
     const { authUser, users } = this.props;
-    console.log("koheeeeeen", this.props);
+    console.log("NavBar Props:", this.props);
     return (
       <div>
         <Menu pointing secondary className="nav-bar">
@@ -53,10 +53,10 @@ class NavBar extends React.Component {
   }
 }
 
-const mapStateToProps = (usersReducer) => {
+const mapStateToProps = (state) => {
   return {
-    authUser: usersReducer.authUserReducer,
-    users: usersReducer.questionsReducer,
+    authUser: state.authUser,
+    users: state.users,
   };
 };
 

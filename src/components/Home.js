@@ -1,21 +1,98 @@
 import React from "react";
 import { Tab } from "semantic-ui-react";
-import { UserCard } from "./UserCard";
+import UserCard from "./UserCard";
+import { connect } from "react-redux";
+import QuestionSection from "./QuestionSection";
+import AnsweredQuestions from "./AnsweredQuestions";
 
-const panes = [
-  { menuItem: "Unanswered Questions", pane: "saasaaaa" },
-  { menuItem: "Answered Questions", pane: "Tab 2 Content" },
-];
-
-export class Home extends React.Component {
+class Home extends React.Component {
   render() {
+    const panes = [
+      {
+        menuItem: "Unanswered Questions",
+        render: () => (
+          <Tab.Pane>
+            {this.props.unansweredQuestions.map((q) => (
+              <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
+                <QuestionSection
+                  optionOne={q.optionOne}
+                  optionTwo={q.optionTwo}
+                  qid={q.id}
+                />
+              </UserCard>
+            ))}
+          </Tab.Pane>
+        ),
+      },
+      {
+        menuItem: "Answered Questions",
+        render: () => (
+          <Tab.Pane>
+            {this.props.answeredQuestions.map((q) => (
+              <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
+                <AnsweredQuestions
+                  optionOne={q.optionOne}
+                  optionTwo={q.optionTwo}
+                />
+              </UserCard>
+            ))}
+          </Tab.Pane>
+        ),
+      },
+    ];
     return (
       <div>
         <div style={{ margin: "5rem" }}>
-          <Tab panes={panes} renderActiveOnly={false} />
-          <UserCard />
+          <Tab panes={panes} />
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = ({ authUser, questions, users }) => {
+  let answeredQuestionsIds = Object.keys(users[authUser].answers);
+  let allQuestions = Object.entries(questions).map((q) => q[1]);
+
+  let answeredQuestions = allQuestions
+    .filter((question) => {
+      return answeredQuestionsIds.includes(question.id);
+    })
+    .map((q) =>
+      Object.defineProperty(q, "imgURL", {
+        value: users[q.author].avatarURL,
+        writable: false,
+      })
+    )
+    .map((q) =>
+      Object.defineProperty(q, "name", {
+        value: users[q.author].name,
+        writable: false,
+      })
+    );
+
+  let unansweredQuestions = allQuestions
+    .filter((question) => {
+      return !answeredQuestionsIds.includes(question.id);
+    })
+    //.map((q) => (q["imgURL"] = questions[q.author].avatarURL));
+    .map((q) =>
+      Object.defineProperty(q, "imgURL", {
+        value: users[q.author].avatarURL,
+        writable: false,
+      })
+    )
+    .map((q) =>
+      Object.defineProperty(q, "name", {
+        value: users[q.author].name,
+        writable: false,
+      })
+    );
+
+  return {
+    answeredQuestions,
+    unansweredQuestions,
+  };
+};
+
+export default connect(mapStateToProps)(Home);

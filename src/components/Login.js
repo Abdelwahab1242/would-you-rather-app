@@ -24,7 +24,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.props)}
+        {console.log("Login", this.props)}
         <Header
           as="h1"
           content="Would you Rather?"
@@ -52,9 +52,9 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ({ questionsReducer }) => {
+const mapStateToProps = ({ users }) => {
   return {
-    users: Object.values(questionsReducer),
+    users: Object.values(users),
   };
 };
 

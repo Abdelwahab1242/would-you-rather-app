@@ -1,8 +1,8 @@
 import React from "react";
-import { Header, Segment, Label, Progress, Button } from "semantic-ui-react";
+import { Header, Segment, Label, Progress } from "semantic-ui-react";
 import { connect } from "react-redux";
 
-class QuestionResult extends React.Component {
+class AnsweredQuestions extends React.Component {
   render() {
     const { authUser, optionOne, optionTwo } = this.props;
     return (
@@ -57,7 +57,6 @@ class QuestionResult extends React.Component {
         ) : (
           <Header as="h4">No Answered Questions Yet!</Header>
         )}
-        <Button>Back</Button>
       </div>
     );
   }
@@ -69,4 +68,4 @@ const mapStateToProps = ({ authUser }) => {
   };
 };
 
-export default connect(mapStateToProps)(QuestionResult);
+export default connect(mapStateToProps)(AnsweredQuestions);
