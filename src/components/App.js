@@ -38,7 +38,10 @@ class App extends React.Component {
                 </Route>
                 <Route path="/bad_id" component={NoMatch} />
 
-                <Route path="/:question_id" component={QuestionCard} />
+                <Route
+                  path="/questions/:question_id"
+                  component={QuestionCard}
+                />
               </Switch>
             </React.Fragment>
           )}

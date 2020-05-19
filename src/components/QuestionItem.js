@@ -11,7 +11,7 @@ class QuestionItem extends React.Component {
         <br />
         <Divider horizontal>Or</Divider>
         <Header as="h5" content={this.props.optionTwo.text} />
-        <Link to={`/${this.props.qid}`}>
+        <Link to={`/questions/${this.props.qid}`}>
           <Button size="medium" fluid positive content="Answer" />
         </Link>
       </div>

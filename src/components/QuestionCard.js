@@ -34,7 +34,7 @@ class QuestionCard extends React.Component {
 
   render() {
     const disabled = this.state.value === "" ? true : false;
-
+    console.log("question props:", this.props);
     return (
       <div>
         {this.state.answered === true ? (
