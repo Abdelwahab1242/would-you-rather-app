@@ -2,8 +2,8 @@ import React from "react";
 import { Tab } from "semantic-ui-react";
 import UserCard from "./UserCard";
 import { connect } from "react-redux";
-import QuestionSection from "./QuestionSection";
 import AnsweredQuestions from "./AnsweredQuestions";
+import QuestionItem from "./QuestionItem";
 
 class Home extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Home extends React.Component {
           <Tab.Pane>
             {this.props.unansweredQuestions.map((q) => (
               <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
-                <QuestionSection
+                <QuestionItem
                   optionOne={q.optionOne}
                   optionTwo={q.optionTwo}
                   qid={q.id}

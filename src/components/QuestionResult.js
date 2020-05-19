@@ -1,10 +1,13 @@
 import React from "react";
-import { Header, Segment, Label, Progress, Button } from "semantic-ui-react";
+import { Header, Segment, Label, Progress } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 class QuestionResult extends React.Component {
   render() {
     const { authUser, optionOne, optionTwo } = this.props;
+    let optionOneVotes = optionOne.votes.length;
+    let optionTwoVotes = optionTwo.votes.length;
+    let totalVotes = optionOneVotes + optionTwoVotes;
     return (
       <div>
         <Header as="h2">Results:</Header>
@@ -16,8 +19,8 @@ class QuestionResult extends React.Component {
               </Label>
               <p>{optionOne.text}</p>
               <Progress
-                percent={100}
-                label={`${optionOne.votes.length} votes`}
+                percent={((optionOneVotes / totalVotes) * 100).toFixed(2)}
+                label={`${optionOneVotes} votes`}
                 progress
                 color="green"
               />
@@ -25,8 +28,8 @@ class QuestionResult extends React.Component {
             <Segment padded>
               <p>{optionTwo.text}</p>
               <Progress
-                percent={5}
-                label={`${optionTwo.votes.length} votes`}
+                percent={((optionTwoVotes / totalVotes) * 100).toFixed(2)}
+                label={`${optionTwoVotes} votes`}
                 progress
               />
             </Segment>
@@ -39,8 +42,8 @@ class QuestionResult extends React.Component {
               </Label>
               <p>{optionTwo.text}</p>
               <Progress
-                percent={100}
-                label={`${optionTwo.votes.length} votes`}
+                percent={((optionTwoVotes / totalVotes) * 100).toFixed(2)}
+                label={`${optionTwoVotes} votes`}
                 progress
                 color="green"
               />
@@ -48,8 +51,8 @@ class QuestionResult extends React.Component {
             <Segment padded>
               <p>{optionOne.text}</p>
               <Progress
-                percent={5}
-                label={`${optionOne.votes.length} votes`}
+                percent={((optionOneVotes / totalVotes) * 100).toFixed(2)}
+                label={`${optionOneVotes} votes`}
                 progress
               />
             </Segment>
@@ -57,7 +60,6 @@ class QuestionResult extends React.Component {
         ) : (
           <Header as="h4">No Answered Questions Yet!</Header>
         )}
-        <Button>Back</Button>
       </div>
     );
   }

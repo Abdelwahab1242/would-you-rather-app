@@ -2,6 +2,7 @@ import React from "react";
 import { Menu, Button, Header, Image } from "semantic-ui-react";
 import { setAuthUser } from "../actions/authUser";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 class NavBar extends React.Component {
   state = { activeItem: "home" };
@@ -24,16 +25,25 @@ class NavBar extends React.Component {
             name="home"
             active={activeItem === "home"}
             onClick={this.handleItemClick}
+            as={NavLink}
+            to="/"
+            exact
           />
+
           <Menu.Item
             name="New Poll"
             active={activeItem === "newPoll"}
             onClick={this.handleItemClick}
+            as={NavLink}
+            to="/add"
           />
+
           <Menu.Item
             name="Leaderboard"
             active={activeItem === "Leaderboard"}
             onClick={this.handleItemClick}
+            as={NavLink}
+            to="/leaderboard"
           />
 
           <Menu.Menu position="right">
