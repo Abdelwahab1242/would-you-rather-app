@@ -1,6 +1,7 @@
 import {
   RECEIVE_QUESTIONS,
   ADD_ANSWER_TO_QUESTION,
+  ADD_QUESTION,
 } from "../actions/questions";
 
 const questions = (state = {}, action) => {
@@ -20,6 +21,14 @@ const questions = (state = {}, action) => {
             ),
           },
         },
+      };
+
+    case ADD_QUESTION:
+      const { question } = action;
+
+      return {
+        ...state,
+        [question.id]: question,
       };
 
     default:
