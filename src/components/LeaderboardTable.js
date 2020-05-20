@@ -8,51 +8,49 @@ const label = [
   { color: "brown", text: "Third" },
 ];
 
-class LeaderboardTable extends React.Component {
-  render() {
-    return (
-      <div style={{ margin: "1rem" }}>
-        <Table celled collapsing>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Users</Table.HeaderCell>
-              <Table.HeaderCell>Answered questions</Table.HeaderCell>
-              <Table.HeaderCell>Created questions</Table.HeaderCell>
-              <Table.HeaderCell>Score</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+const LeaderboardTable = (props) => {
+  return (
+    <div style={{ margin: "1rem" }}>
+      <Table celled collapsing>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Users</Table.HeaderCell>
+            <Table.HeaderCell>Answered questions</Table.HeaderCell>
+            <Table.HeaderCell>Created questions</Table.HeaderCell>
+            <Table.HeaderCell>Score</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-          <Table.Body>
-            {this.props.usersData
-              .sort((one, two) => two.score - one.score)
-              .map((user, i) => {
-                return (
-                  <Table.Row>
-                    <Table.Cell>
-                      <Label ribbon color={label[i].color}>
-                        {label[i].text}
-                      </Label>
-                      <Header as="h4" image>
-                        <Image src={user.imgURL} rounded size="small" />
-                        <Header.Content>{user.name}</Header.Content>
-                      </Header>
-                    </Table.Cell>
-                    <Table.Cell>{user.answersNo}</Table.Cell>
-                    <Table.Cell>{user.questionsNo}</Table.Cell>
-                    <Table.Cell>
-                      <Label circular color="green">
-                        {user.score}
-                      </Label>
-                    </Table.Cell>
-                  </Table.Row>
-                );
-              })}
-          </Table.Body>
-        </Table>
-      </div>
-    );
-  }
-}
+        <Table.Body>
+          {props.usersData
+            .sort((one, two) => two.score - one.score)
+            .map((user, i) => {
+              return (
+                <Table.Row>
+                  <Table.Cell>
+                    <Label ribbon color={label[i].color}>
+                      {label[i].text}
+                    </Label>
+                    <Header as="h4" image>
+                      <Image src={user.imgURL} rounded size="small" />
+                      <Header.Content>{user.name}</Header.Content>
+                    </Header>
+                  </Table.Cell>
+                  <Table.Cell>{user.answersNo}</Table.Cell>
+                  <Table.Cell>{user.questionsNo}</Table.Cell>
+                  <Table.Cell>
+                    <Label circular color="green">
+                      {user.score}
+                    </Label>
+                  </Table.Cell>
+                </Table.Row>
+              );
+            })}
+        </Table.Body>
+      </Table>
+    </div>
+  );
+};
 
 const mapStateToProps = ({ users }) => {
   let allUsers = Object.entries(users).map((q) => q[1]);

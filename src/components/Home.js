@@ -2,7 +2,7 @@ import React from "react";
 import { Tab } from "semantic-ui-react";
 import UserCard from "./UserCard";
 import { connect } from "react-redux";
-import AnsweredQuestions from "./AnsweredQuestions";
+import QuestionResult from "./QuestionResult";
 import QuestionItem from "./QuestionItem";
 
 class Home extends React.Component {
@@ -30,7 +30,7 @@ class Home extends React.Component {
           <Tab.Pane>
             {this.props.answeredQuestions.map((q) => (
               <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
-                <AnsweredQuestions
+                <QuestionResult
                   optionOne={q.optionOne}
                   optionTwo={q.optionTwo}
                 />
@@ -75,7 +75,6 @@ const mapStateToProps = ({ authUser, questions, users }) => {
     .filter((question) => {
       return !answeredQuestionsIds.includes(question.id);
     })
-    //.map((q) => (q["imgURL"] = questions[q.author].avatarURL));
     .map((q) =>
       Object.defineProperty(q, "imgURL", {
         value: users[q.author].avatarURL,
