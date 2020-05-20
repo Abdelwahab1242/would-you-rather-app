@@ -10,7 +10,7 @@ const label = [
 
 const LeaderboardTable = (props) => {
   return (
-    <div style={{ margin: "1rem" }}>
+    <div style={{ margin: "2rem" }}>
       <Table celled collapsing>
         <Table.Header>
           <Table.Row>
@@ -26,7 +26,7 @@ const LeaderboardTable = (props) => {
             .sort((one, two) => two.score - one.score)
             .map((user, i) => {
               return (
-                <Table.Row>
+                <Table.Row key={`user:${user.id}`}>
                   <Table.Cell>
                     <Label ribbon color={label[i].color}>
                       {label[i].text}
