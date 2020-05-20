@@ -12,15 +12,17 @@ class Home extends React.Component {
         menuItem: "Unanswered Questions",
         render: () => (
           <Tab.Pane>
-            {this.props.unansweredQuestions.map((q) => (
-              <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
-                <QuestionItem
-                  optionOne={q.optionOne}
-                  optionTwo={q.optionTwo}
-                  qid={q.id}
-                />
-              </UserCard>
-            ))}
+            {this.props.unansweredQuestions
+              .sort((one, two) => two.timestamp - one.timestamp)
+              .map((q) => (
+                <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
+                  <QuestionItem
+                    optionOne={q.optionOne}
+                    optionTwo={q.optionTwo}
+                    qid={q.id}
+                  />
+                </UserCard>
+              ))}
           </Tab.Pane>
         ),
       },
@@ -28,14 +30,16 @@ class Home extends React.Component {
         menuItem: "Answered Questions",
         render: () => (
           <Tab.Pane>
-            {this.props.answeredQuestions.map((q) => (
-              <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
-                <QuestionResult
-                  optionOne={q.optionOne}
-                  optionTwo={q.optionTwo}
-                />
-              </UserCard>
-            ))}
+            {this.props.answeredQuestions
+              .sort((one, two) => two.timestamp - one.timestamp)
+              .map((q) => (
+                <UserCard key={q.id} imgURL={q.imgURL} name={q.name}>
+                  <QuestionResult
+                    optionOne={q.optionOne}
+                    optionTwo={q.optionTwo}
+                  />
+                </UserCard>
+              ))}
           </Tab.Pane>
         ),
       },
