@@ -5,7 +5,7 @@ import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
 import Home from "./Home";
 import NavBar from "./NavBar";
-import NoMatch from "./noMatch";
+import NoMatch from "./NoMatch";
 import NewQuestion from "./NewQuestion";
 import LeaderboardTable from "./LeaderboardTable";
 import QuestionCard from "./QuestionCard";
